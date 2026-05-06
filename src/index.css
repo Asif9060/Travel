@@ -1,13 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:italic,wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-heading: "Cormorant Garamond", "Georgia", serif;
-  --font-body: "Outfit", "Helvetica Neue", sans-serif;
+  --font-heading: "Playfair Display", serif;
+  --font-body: "Plus Jakarta Sans", sans-serif;
+  --font-accent: "Libre+Baskerville", serif;
 
-  --color-gold: #D4AF37;
-  --color-gold-hover: #F3C94D;
-  --color-midnight: #0B1221;
-  --color-deep-space: #070B14;
+  --color-gold: #C5A059;
+  --color-gold-hover: #D4AF37;
+  --color-midnight: #05080F;
+  --color-deep-space: #020408;
   
   --color-bg-secondary: #0B1221;
   --color-bg-tertiary: #070B14;
@@ -19,7 +21,7 @@
 
 @layer base {
   body {
-    @apply bg-slate-950 text-slate-400 font-body antialiased;
+    @apply bg-slate-950 text-slate-400 font-body antialiased selection:bg-gold/30 selection:text-white;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -27,37 +29,37 @@
   }
 
   .italic-accent {
-    @apply font-heading italic;
+    @apply font-accent italic;
   }
 }
 
 @layer components {
   .luxury-glass {
-    @apply bg-slate-950/70 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)];
+    @apply bg-slate-950/80 backdrop-blur-2xl border-b border-white/5 shadow-[0_8px_40px_rgba(0,0,0,0.6)];
   }
 
   .luxury-card {
-    @apply bg-[#0B1221] border border-white/5 hover:border-white/20 transition-all duration-500 shadow-xl;
+    @apply bg-slate-900/40 border border-white/5 hover:border-gold/20 transition-all duration-700 shadow-2xl;
   }
 
   .editorial-label {
-    @apply text-[10px] font-bold uppercase tracking-[0.3em] text-gold;
+    @apply text-[10px] font-bold uppercase tracking-[0.4em] text-gold/80;
   }
 
   .gold-button {
-    @apply bg-gold text-slate-950 hover:bg-gold-hover transition-all font-bold rounded-none px-8 py-4 uppercase tracking-[0.2em] text-[10px] shadow-[0_4px_20px_rgba(212,175,55,0.2)];
+    @apply relative overflow-hidden bg-gold text-slate-950 hover:bg-white transition-all duration-500 font-bold px-10 py-5 uppercase tracking-[0.25em] text-[10px] shadow-[0_10px_30px_rgba(197,160,89,0.15)] hover:shadow-gold/20 active:scale-95;
   }
 
   .outline-button {
-    @apply border border-white/20 text-white bg-white/5 hover:bg-white/10 transition-all font-bold rounded-none px-8 py-4 uppercase tracking-[0.2em] text-[10px] backdrop-blur-md;
+    @apply relative overflow-hidden border border-white/20 text-white bg-transparent hover:bg-white/10 hover:border-white/40 transition-all duration-500 font-bold px-10 py-5 uppercase tracking-[0.25em] text-[10px] backdrop-blur-md active:scale-95;
   }
 
   .concierge-button {
-    @apply px-6 py-2 border border-gold text-gold text-[10px] uppercase tracking-tighter hover:bg-gold hover:text-slate-950 transition-all;
+    @apply px-7 py-2.5 border border-gold/50 text-gold text-[9px] font-bold uppercase tracking-[0.2em] hover:bg-gold hover:text-slate-950 transition-all duration-500;
   }
 
   .luxury-container {
-    @apply max-w-7xl mx-auto px-6 sm:px-10 lg:px-16;
+    @apply max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16;
   }
 }
 

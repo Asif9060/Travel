@@ -1,7 +1,7 @@
 import { PACKAGES } from '@/constants';
 import { motion } from 'motion/react';
-import { Button } from '@/components/ui/button';
-import { Check, Star, Coffee, Wine, Wifi } from 'lucide-react';
+import { PremiumButton } from '@/components/PremiumUI';
+import { Star, Coffee, Wine, Wifi, ArrowRight } from 'lucide-react';
 
 export default function Packages() {
   const allPackages = [
@@ -17,75 +17,80 @@ export default function Packages() {
   ];
 
   return (
-    <div className="py-24 luxury-container min-h-screen">
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="space-y-4 mb-24"
-      >
-        <span className="text-xs font-semibold tracking-[0.2em] uppercase text-gold">All-Inclusive Curations</span>
-        <h1 className="text-5xl md:text-7xl font-heading text-white">The Definitive Selection</h1>
-        <p className="max-w-2xl text-slate-400 font-light text-lg">
-          Each voyage is an orchestrated masterpiece. Our packages are designed to provide the most seamless and elevated experience possible.
-        </p>
-      </motion.div>
+    <div className="py-32 bg-slate-950 min-h-screen">
+      <div className="luxury-container">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2 }}
+          className="space-y-6 mb-32 max-w-3xl"
+        >
+          <span className="editorial-label text-gold">Premium Expeditions</span>
+          <h1 className="text-6xl md:text-9xl font-heading text-white leading-none">Our Popular <br /><span className="italic-accent text-gold">Tours</span></h1>
+          <p className="text-slate-400 font-light text-xl leading-relaxed">
+            Discover our carefully curated selection of maritime journeys. Each tour is an orchestrated masterpiece designed for the ultimate escape.
+          </p>
+        </motion.div>
 
-      <div className="space-y-16">
-        {allPackages.map((pkg, index) => (
-          <motion.div
-            key={pkg.id}
-            initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className={`luxury-card flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} overflow-hidden relative group`}
-            data-testid={`package-card-${pkg.id}`}
-          >
-            {/* Visual */}
-            <div className="lg:w-1/2 h-[500px] overflow-hidden relative">
-              <img src={pkg.image} alt={pkg.title} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-slate-950/20" />
-              <div className="absolute top-8 left-8">
-                 <div className="bg-gold text-slate-950 px-4 py-1 text-[10px] font-bold uppercase tracking-widest shadow-xl">Best Choice</div>
-              </div>
-            </div>
-
-            {/* Content */}
-            <div className="lg:w-1/2 p-12 lg:p-20 flex flex-col justify-center space-y-8">
-              <div className="flex justify-between items-start">
-                <div>
-                  <span className="text-xs uppercase tracking-[0.3em] text-gold font-bold">{pkg.duration} All-Inclusive</span>
-                  <h2 className="text-4xl font-heading text-white mt-4">{pkg.title}</h2>
-                </div>
-                <div className="text-right">
-                  <p className="text-slate-500 text-[10px] uppercase tracking-widest">Signature Voyage</p>
-                  <p className="text-3xl text-white font-heading font-light">{pkg.price}</p>
-                  <p className="text-[10px] text-slate-500 uppercase tracking-widest mt-1">Per Person</p>
+        <div className="space-y-24">
+          {allPackages.map((pkg, index) => (
+            <motion.div
+              key={pkg.id}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              viewport={{ once: true }}
+              className={`luxury-card flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} overflow-hidden relative group`}
+            >
+              {/* Visual */}
+              <div className="lg:w-1/2 h-[600px] overflow-hidden relative">
+                <img src={pkg.image} alt={pkg.title} className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110" />
+                <div className="absolute inset-0 bg-slate-950/20" />
+                <div className="absolute top-10 left-10">
+                   <div className="bg-gold text-slate-950 px-5 py-1 text-[10px] font-bold uppercase tracking-[0.2em] shadow-2xl">Signature Curation</div>
                 </div>
               </div>
 
-              <p className="text-slate-400 font-light text-lg leading-relaxed">{pkg.description}</p>
-
-              <div className="grid grid-cols-2 gap-4">
-                {[
-                  { icon: Coffee, text: 'Gourmet Dining' },
-                  { icon: Wine, text: 'Open Bar' },
-                  { icon: Wifi, text: 'Premium Data' },
-                  { icon: Star, text: 'Personal Butler' }
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3 text-xs uppercase tracking-widest text-slate-500">
-                    <item.icon className="w-4 h-4 text-gold/50" />
-                    <span>{item.text}</span>
+              {/* Content */}
+              <div className="lg:w-1/2 p-12 lg:p-24 flex flex-col justify-center space-y-10 bg-midnight/90 backdrop-blur-xl">
+                <div className="flex justify-between items-start">
+                  <div className="space-y-4">
+                    <span className="editorial-label text-gold font-bold">{pkg.duration} • All-Inclusive</span>
+                    <h2 className="text-5xl font-heading text-white leading-tight">{pkg.title}</h2>
                   </div>
-                ))}
-              </div>
+                </div>
 
-              <div className="flex gap-4 pt-4">
-                <Button className="gold-button flex-1 h-16" data-testid={`book-pkg-${pkg.id}`}>Begin Reservation</Button>
-                <Button variant="outline" className="outline-button h-16" data-testid={`view-pkg-${pkg.id}`}>Itinerary Details</Button>
+                <div className="space-y-4">
+                   <p className="text-4xl text-white font-heading font-light tracking-wide">{pkg.price}</p>
+                   <p className="text-[9px] text-slate-500 uppercase tracking-[0.3em] font-bold">Inclusive per person</p>
+                </div>
+
+                <p className="text-slate-400 font-light text-xl leading-relaxed line-clamp-3">{pkg.description}</p>
+
+                <div className="grid grid-cols-2 gap-6">
+                  {[
+                    { icon: Coffee, text: 'Gourmet Dining' },
+                    { icon: Wine, text: 'Open Bar' },
+                    { icon: Wifi, text: 'Premium Data' },
+                    { icon: Star, text: 'Personal Butler' }
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center gap-4 text-[10px] uppercase tracking-[0.2em] text-slate-500 font-bold">
+                      <item.icon className="w-5 h-5 text-gold/40" />
+                      <span>{item.text}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-6 pt-6">
+                  <PremiumButton className="flex-1 h-18 text-xs flex items-center justify-center gap-4 group">
+                    Begin Reservation <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
+                  </PremiumButton>
+                  <PremiumButton variant="outline" className="h-18 px-12 text-xs">Itinerary Details</PremiumButton>
+                </div>
               </div>
-            </div>
-          </motion.div>
-        ))}
+            </motion.div>
+          ))}
+        </div>
       </div>
     </div>
   );

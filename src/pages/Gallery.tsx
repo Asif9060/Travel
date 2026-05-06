@@ -15,34 +15,40 @@ export default function Gallery() {
   ];
 
   return (
-    <div className="py-24 luxury-container">
-      <motion.div 
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="text-center space-y-4 mb-20"
-      >
-        <span className="text-xs font-semibold tracking-[0.2em] uppercase text-gold">The Visual Record</span>
-        <h1 className="text-5xl md:text-7xl font-heading text-white">Atmospheres</h1>
-        <p className="max-w-xl mx-auto text-slate-400 font-light">A glimpse into the life of a voyager. Unrehearsed elegance and curated moments across the seven seas.</p>
-      </motion.div>
+    <div className="py-32 bg-slate-950 min-h-screen">
+      <div className="luxury-container">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2 }}
+          className="text-left space-y-6 mb-32 max-w-2xl"
+        >
+          <span className="editorial-label text-gold">The Visual Record</span>
+          <h1 className="text-6xl md:text-9xl font-heading text-white leading-none">Photo <br /><span className="italic-accent text-gold">Gallery</span></h1>
+          <p className="text-slate-400 font-light text-xl leading-relaxed">A glimpse into the life of a voyager. Unrehearsed elegance and curated moments across the seas.</p>
+        </motion.div>
 
-      <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
-        {images.map((img, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.05 }}
-            className="relative overflow-hidden group rounded-sm"
-            data-testid={`gallery-image-${i}`}
-          >
-             <img src={`${img}?auto=format&fit=crop&q=80&w=800`} alt="Gallery" className="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700 cursor-pointer" />
-             <div className="absolute inset-0 bg-slate-950/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span className="text-[10px] uppercase tracking-widest text-white border border-white/40 px-4 py-2 backdrop-blur-sm">Enlarge View</span>
-             </div>
-          </motion.div>
-        ))}
+        <div className="columns-1 sm:columns-2 lg:columns-3 gap-8 space-y-8">
+          {images.map((img, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.8 }}
+              className="relative overflow-hidden group luxury-card"
+            >
+               <img 
+                 src={`${img}?auto=format&fit=crop&q=80&w=800`} 
+                 alt="Gallery" 
+                 className="w-full h-auto object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-[1.5s] cursor-pointer scale-105 group-hover:scale-100" 
+               />
+               <div className="absolute inset-0 bg-slate-950/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-8">
+                  <span className="editorial-label text-white border-b border-white pb-1">Enlarge Experience</span>
+               </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </div>
   );

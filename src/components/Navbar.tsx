@@ -8,39 +8,54 @@ export default function Navbar() {
 
   const navLinks = [
     { name: 'Home', path: '/', id: 'nav-home-link' },
-    { name: 'Cruise Ships', path: '/ships', id: 'nav-ships-link' },
+    { name: 'Tours', path: '/packages', id: 'nav-tours-link' },
     { name: 'Destinations', path: '/destinations', id: 'nav-destinations-link' },
-    { name: 'Packages', path: '/packages', id: 'nav-packages-link' },
+    { name: 'Pages', path: '/about', id: 'nav-pages-link' },
     { name: 'Gallery', path: '/gallery', id: 'nav-gallery-link' },
-    { name: 'About', path: '/about', id: 'nav-about-link' },
     { name: 'Contact', path: '/contact', id: 'nav-contact-link' },
   ];
 
   return (
-    <nav className="fixed w-full z-50 transition-all duration-300 luxury-glass h-20">
-      <div className="luxury-container h-full">
-        <div className="flex justify-between items-center h-full">
-          <Link to="/" className="flex items-center space-x-2" data-testid="logo-link">
-            <div className="w-8 h-8 bg-gold flex items-center justify-center font-bold text-slate-950 rounded-sm">O</div>
-            <span className="text-xl font-heading text-white tracking-[0.3em] font-light uppercase">OceanVoyage</span>
-          </Link>
-
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center space-x-10">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.path}
-                className="text-[10px] font-semibold tracking-widest uppercase text-slate-300 hover:text-gold transition-all"
-                data-testid={link.id}
-              >
-                {link.name}
-              </Link>
-            ))}
-            <button className="concierge-button ml-4" data-testid="book-now-button">
-              Concierge
-            </button>
+    <nav className="fixed w-full z-50 transition-all duration-300">
+      {/* Top Bar */}
+      <div className="bg-slate-900/80 backdrop-blur-md border-b border-white/5 py-2 hidden md:block">
+        <div className="luxury-container flex justify-between items-center text-[10px] tracking-[0.2em] font-medium text-slate-400">
+          <div className="flex gap-8">
+            <span className="flex items-center gap-2"><Phone size={12} className="text-gold" /> +880 1234 567 890</span>
+            <span className="flex items-center gap-2"><Mail size={12} className="text-gold" /> info@travoway.com</span>
           </div>
+          <div className="flex gap-6 uppercase">
+            <span>Login</span>
+            <span>Register</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="luxury-glass h-20">
+        <div className="luxury-container h-full">
+          <div className="flex justify-between items-center h-full">
+            <Link to="/" className="flex items-center space-x-3" data-testid="logo-link">
+              <div className="w-10 h-10 bg-gold flex items-center justify-center font-bold text-slate-950 rounded-sm italic text-xl">T</div>
+              <span className="text-2xl font-heading text-white tracking-[0.2em] font-bold uppercase">Travo<span className="text-gold">way</span></span>
+            </Link>
+
+            {/* Desktop Nav */}
+            <div className="hidden md:flex items-center space-x-8">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  className="text-[11px] font-bold tracking-[0.15em] uppercase text-slate-300 hover:text-gold transition-all"
+                  data-testid={link.id}
+                >
+                  {link.name}
+                </Link>
+              ))}
+              <div className="h-4 w-[1px] bg-white/10 mx-2" />
+              <button className="concierge-button" data-testid="book-now-button">
+                Book Now
+              </button>
+            </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">
@@ -50,8 +65,9 @@ export default function Navbar() {
           </div>
         </div>
       </div>
+    </div>
 
-      {/* Mobile Nav */}
+    {/* Mobile Nav */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -73,7 +89,7 @@ export default function Navbar() {
                 </Link>
               ))}
               <button className="gold-button w-full" data-testid="mobile-book-now-button">
-                Book Passage
+                Book Now
               </button>
             </div>
           </motion.div>
